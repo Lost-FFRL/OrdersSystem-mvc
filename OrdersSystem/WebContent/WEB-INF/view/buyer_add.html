@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>客户增改</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/buyer_add.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/buyer_add.js"></script>
+</head>
+
+<body>
+	<div class="bg">
+		<div class="form">
+			<form id="e_add" action="$action" method="post">
+				<table>
+					<tbody>
+						<tr>
+							<td class="e_name">姓名：</td>
+							<td class="e_value">#if($bean) <input type="hidden"
+								name="id" value="$!bean.id" /> #end <input id="name"
+								name="name" type="text" maxlength="50" value="$!bean.name" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">性别：</td>
+							<td class="e_value">
+							<input name="sex" type="radio" value="0" 
+							#if($bean.sex == 1 )
+							#else
+							checked="checked"
+                            #end							
+							>男
+					        <input name="sex" type="radio" value="1" 
+					        #if($bean.sex == 1)
+					        checked="checked"
+					        #end
+					        >女
+					        </td>
+						</tr>
+						<tr>
+							<td class="e_name">简述：</td>
+							<td class="e_value"><textarea id="desc" name="desc" rows="4"
+									cols="30" value="$!bean.desc">$!bean.desc</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">座机：</td>
+							<td class="e_value"><input id="phone" type="text"
+								name="phone" maxlength="13" value="$!bean.phone" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">手机：</td>
+							<td class="e_value"><input id="mobile" type="text"
+								name="mobile" maxlength="11" value="$!bean.mobile" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">地址：</td>
+							<td class="e_value"><input id="address" type="text"
+								name="address" maxlength="100" value="$!bean.address" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">信誉：</td>
+							<td class="e_value"><select name="reputation">
+									<option value="1" #if(1==
+										$!bean.reputation)
+										selected="selected" #end>
+										1</option>
+									<option value="2" #if(2==
+										$!bean.reputation)
+										selected="selected" #end>
+										2</option>
+									<option value="3" #if(3==
+										$!bean.reputation)
+										selected="selected" #end>
+										3</option>
+									<option value="4" #if(4==
+										$!bean.reputation)
+										selected="selected" #end>
+										4</option>
+									<option value="5" #if(1 ==
+										$!bean.reputation
+											|| 2 ==
+										$!bean.reputation
+											|| 3 ==
+										$!bean.reputation
+											|| 4 ==
+										$!bean.reputation
+										)
+										#else
+										selected="selected" #end>5</option>
+							</select> 星</td>
+						</tr>
+						<tr>
+							<td class="e_name">备注</td>
+							<td class="e_value"><textarea id="remark" name="remark"
+									rows="4" cols="30" value="$!bean.remark">$!bean.remark</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div id="prompt" class="prompt"></div>
+								<button class="o_btn" type="reset">重置</button>
+								<button id="e-submit" class="o_btn" type="button">提交</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

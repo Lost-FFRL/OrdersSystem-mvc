@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>产品增改</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/product_add.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/product_add.js"></script>
+</head>
+
+<body>
+	<div class="bg">
+		<div class="form">
+			<form id="e_add" action="$action" method="post">
+				<table>
+					<tbody>
+						<tr>
+							<td class="e_name">编号：</td>
+							<td class="e_value">
+							<input id="number" type="text"
+								name="number" maxlength="50" value="$!bean.number" /></td>
+						</tr>
+						<tr>
+							<td class="e_name">名称：</td>
+							<td class="e_value">#if($bean) <input type="hidden"
+								name="id" value="$!bean.id" /> #end <input id="name"
+								name="name" type="text" maxlength="50" value="$!bean.name" /></td>
+						</tr>
+						<tr>
+							<td class="e_name">价格：</td>
+							<td class="e_value"><input id="price" type="text"
+								name="price" maxlength="10" value="$!bean.price" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">简述：</td>
+							<td class="e_value"><textarea id="desc" name="desc" rows="4"
+									cols="30" value="$!bean.desc">$!bean.desc</textarea></td>
+						</tr>
+						<tr>
+							<td class="e_name">备注</td>
+							<td class="e_value"><textarea id="remark" name="remark"
+									rows="4" cols="30" value="$!bean.remark">$!bean.remark</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div id="prompt" class="prompt"></div>
+								<button class="o_btn" type="reset">重置</button>
+								<button id="e-submit" class="o_btn" type="button">提交</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

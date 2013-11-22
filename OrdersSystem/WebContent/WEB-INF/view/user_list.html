@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>用户管理</title>
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="this is my page">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="./css/user_list.css">
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript" src="./js/user_list.js"></script>
+	</head>
+
+	<body>
+		<div class="bg">
+			<div class="head">
+				<div class="nvg">
+					<a href="#" class="cur_nvg">用户管理</a>
+                    <a href="express.do?type=query">快递管理</a>
+                    <a href="payType.do?type=query">支付管理</a>
+                    <a href="buyer.do?type=query">客户管理</a>
+                    <a href="product.do?type=query">商品管理</a>
+                    <a href="orders.do?type=query" >订单管理</a>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="body">
+				<div class="search">
+					<form id="s_form" action="user.do?type=query" method="post">
+						<div class="condition">
+						<span>姓名：</span>
+						<input type="text" name="name" value="$!name" />
+						</div>
+						<!-- <div class="condition">
+                        <span>账号：</span>
+                        <input type="text" name="account" value="$!account" />
+                        </div> -->
+						<div class="condition">
+						<span>电话：</span>
+						<input type="text" name="phone" value="$!phone"/>
+						</div>
+						<div class="condition">
+						<span>手机：</span>
+						<input type="text" name="mobile" value="$!mobile"/>
+						</div>
+						<div class="clear"></div>
+						<div class="operate">
+							<div id="query" class="o_btn">查询</div>
+							<a href="user.do?type=add" class="o_btn" target="_blank">新增</a>
+						</div>
+						<div id="cache" ></div>
+					</form>
+				</div>
+				<div class="clear"></div>
+				<div class="result">
+					<table class="data_table">
+						<thead>
+						<tr>
+							<th>姓名</th>
+							<th>帐号</th>
+							<th>性别</th>
+							<th>简述</th>
+							<th>座机</th>
+							<th>手机</th>
+							<th>地址</th>
+							<th>更新时间</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+							#foreach($bean in $page.list)
+								<tr id="tr-$bean.id">
+									<td>$!bean.name</td>
+									<td>$!bean.account</td>
+									<td>#if($!bean.sex == 1)
+									女
+									#else
+									男
+									#end
+									</td>
+									<td>$!bean.desc</td>
+									<td>$!bean.phone</td>
+									<td>$!bean.mobile</td>
+									<td>$!bean.address</td>
+									<td>$!bean.updateDate</td>
+									<td>$!bean.remark</td>
+									<td class="d-operate">
+										<a href="user.do?type=update&id=$bean.id" target="_blank">修改</a>
+										&nbsp;
+										<span flag="$bean.id" class="d_delete">删除</span>
+									</td>
+								</tr>
+							#end
+							<tr>
+								<td colspan="10">
+									<form id="p_form" action="user.do?type=query" method="post">
+										<input type="hidden" name="name" value="$!name" />
+										<input type="hidden" " name="phone" value="$!phone" />
+										<input type="hidden" name="mobile" value="$!mobile" />
+										<input id="curPage" type="hidden" name="curPage" value="$!curPage" />
+										<input id="totalPage" type="hidden" name="totalPage" value="$!totalPage" />
+										<span id="pre" class="page">上一页</span>
+										&nbsp;$!page.curPage&nbsp;/&nbsp;$!page.totalPage&nbsp;
+										<span id="next" class="page">下一页</span>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

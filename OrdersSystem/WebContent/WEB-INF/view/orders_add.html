@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>订单增改</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/orders_add.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/orders_add.js"></script>
+</head>
+
+<body>
+	<div class="bg">
+		<div class="form">
+			<form id="e_add" action="$action" method="post">
+				<table>
+					<tbody>
+						<tr>
+							<td class="e_name">订单编号：</td>
+							<td class="e_value"><input id="ordersNum" type="text"
+								name="ordersNum" maxlength="50" value="$!bean.ordersNum" />
+							</td>
+							<td class="e_name">订单名称：</td>
+							<td class="e_value">#if($bean) <input type="hidden"
+								name="id" value="$!bean.id" /> #end <input id="name"
+								name="name" type="text" maxlength="50" value="$!bean.name" />
+							</td>
+						</tr>
+<!-- 						<tr>
+							<td class="e_name">订单开始时间：</td>
+							<td class="e_value"><input id="startDate" type="text"
+								name="startDate" maxlength="10" value="$!bean.startDate" /></td>
+							<td class="e_name">订单结束时间：</td>
+							<td class="e_value"><input id="endDate" type="text"
+								name="endDate" maxlength="10" value="$!bean.endDate" />
+							</td>
+						</tr> -->
+						<tr>
+							<td class="e_name">买家：</td>
+							<td class="e_value"><input id="buyerName" type="text"
+								name="buyerName" maxlength="10" value="$!bean.buyerName" /></td>
+							<td class="e_name">地址：</td>
+							<td class="e_value"><input id="buyerAddress" type="text"
+								name="buyerAddress" maxlength="10" value="$!bean.buyerAddress" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">联系方式：</td>
+							<td class="e_value"><input id="buyerPhone" type="text"
+								name="buyerPhone" maxlength="10" value="$!bean.buyerPhone" /></td>
+							<td class="e_name">买家留言：</td>
+							<td class="e_value"><input id="buyerMsg" type="text"
+								name="buyerMsg" maxlength="10" value="$!bean.buyerMsg" /></td>
+						</tr>
+						<tr>
+							<td class="e_name">支付方式：</td>
+							<td class="e_value">
+							<input type="hidden" id="payTypeName" name="payTypeName" value="$!bean.payTypeName" />
+							<select id="sel-payType" name="payTypeId">
+							        #if(!$!bean.payTypeId)
+									<option value="0"  selected="selected" >请选择</option> 
+								    #end
+								    #if($!bean.payTypeId)
+									<option value="$!bean.payTypeId" selected="selected">$!bean.payTypeName</option>
+									#end
+							</select>
+							</td>
+							<td class="e_name">快递：</td>
+							<td class="e_value">
+							<input type="hidden" id="expressName" name="expressName" value="$!bean.expressName" />
+							<select id="sel-express" name="expressId">
+									<option value="0" #if($!bean.expressId) 
+									#else
+										selected="selected" 
+									#end >请选择</option> 
+										#if($!bean.payTypeId)
+									<option value="$!bean.expressId" selected="selected">$!bean.expressName</option>
+									#end
+							</select></td>
+						</tr>
+						<tr>
+							<td class="e_name">运费：</td>
+							<td class="e_value"><input id="expressPrice" name="expressPrice"
+								rows="4" cols="30" value="$!bean.expressPrice"></input></td>
+							<td class="e_name">运单号：</td>
+							<td class="e_value"><input id="remark" name="expressNum"
+								rows="4" cols="30" value="$!bean.expressNum"></input></td>
+						</tr>
+						<tr>
+							<td class="e_name">状态：</td>
+							<td class="e_value"><select id="sel-status" name="status">
+									<option value="0" selected="selected">请选择</option>
+									<option value="1" >待定</option>
+									<option value="2" >新单</option>
+									<option value="3" >已发货</option>
+									<option value="4" >已签收</option>
+									<option value="5" >拒签</option>
+									<option value="6" >已确认收款</option>
+									<option value="7" >拒签,返货中</option>
+									<option value="8" >拒签货已退回</option>
+									<option value="9" >已退款</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">简述：</td>
+							<td class="e_value"><textarea id="desc" name="desc" rows="4"
+									cols="30" value="$!bean.desc">$!bean.desc</textarea>
+							</td>
+							<td class="e_name">备注</td>
+							<td class="e_value"><textarea id="remark" name="remark"
+									rows="4" cols="30" value="$!bean.remark"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">总价：</td>
+							<td class="e_value"><input id="totalPrice" type="text"
+								name="totalPrice" maxlength="10" value="$!bean.totalPrice" /></td>
+							<td class="e_name">总量：</td>
+							<td class="e_value"><input id="totalProduct" type="text"
+								name="totalProduct" maxlength="10" value="$!bean.totalProduct" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div id="product_info" class="product_info">
+									<select id="sel_product" class="p_sel">
+										<option value="0" selected="selected" >请选择商品</option>
+									</select>
+									<span id="p-add" class="p_add">添加</span>
+								</div>
+								<div class="clear"></div>
+								<div class="p_table">
+									<table id="p-list" class="data_table">
+										<thead>
+											<tr>
+												<th>名称</th>
+												<th>单价</th>
+												<th>数量</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div id="prompt" class="prompt"></div>
+								<button class="o_btn" type="reset">重置</button>
+								<button id="e-submit" class="o_btn" type="button">提交</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

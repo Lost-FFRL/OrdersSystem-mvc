@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>客户增改</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/user_add.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/user_add.js"></script>
+</head>
+
+<body>
+	<div class="bg">
+		<div class="form">
+			<form id="e_add" action="$action" method="post">
+				<table>
+					<tbody>
+						<tr>
+							<td class="e_name">帐号：</td>
+							<td class="e_value">
+							<input id="account" type="text"
+								name="account" maxlength="50" value="$!bean.account" />
+							</td>
+						</tr>
+                        <tr>
+                            <td class="e_name">密码：</td>
+                            <td class="e_value">
+                            <input id="password" type="password"
+                                name="password" maxlength="50" value="$!bean.password" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="e_name">密码确认：</td>
+                            <td class="e_value">
+                            <input id="password1" type="password"
+                                name="password1" maxlength="50" value="$!bean.password" />
+                            </td>
+                        </tr>
+						<tr>
+							<td class="e_name">名称：</td>
+							<td class="e_value">#if($bean) <input type="hidden"
+								name="id" value="$!bean.id" /> #end <input id="name"
+								name="name" type="text" maxlength="50" value="$!bean.name" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">性别：</td>
+							<td class="e_value"><input name="sex" type="radio" value="0"
+								#if($bean.sex== 1 )
+							#else checked="checked" #end>男
+								<input name="sex" type="radio" value="1" #if($bean.sex==
+								1)
+					        checked="checked" #end>女</td>
+						</tr>
+						<tr>
+							<td class="e_name">简述：</td>
+							<td class="e_value"><textarea id="desc" name="desc" rows="4"
+									cols="30" value="$!bean.desc">$!bean.desc</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">座机：</td>
+							<td class="e_value"><input id="phone" type="text"
+								name="phone" maxlength="13" value="$!bean.phone" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">手机：</td>
+							<td class="e_value"><input id="mobile" type="text"
+								name="mobile" maxlength="11" value="$!bean.mobile" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">地址：</td>
+							<td class="e_value"><input id="address" type="text"
+								name="address" maxlength="100" value="$!bean.address" />
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">备注</td>
+							<td class="e_value"><textarea id="remark" name="remark"
+									rows="4" cols="30" value="$!bean.remark">$!bean.remark</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div id="prompt" class="prompt"></div>
+								<button class="o_btn" type="reset">重置</button>
+								<button id="e-submit" class="o_btn" type="button">提交</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

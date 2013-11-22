@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>订单管理</title>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/orders_list.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/orders_list.js"></script>
+</head>
+
+<body>
+	<div class="bg">
+		<div class="head">
+			<div class="nvg">
+				<a href="user.do?type=query">用户管理</a> <a
+					href="express.do?type=query">快递管理</a> <a
+					href="payType.do?type=query">支付管理</a> <a href="buyer.do?type=query">客户管理</a>
+				<a href="product.do?type=query" >商品管理</a> <a href="#"
+					class="cur_nvg">订单管理</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="body">
+			<div class="search">
+				<form id="s_form" action="orders.do?type=query" method="post">
+					<div class="condition">
+						<span>编号：</span> <input type="text" name="ordersNum" value="$!ordersNum" />
+					</div>
+					<div class="condition">
+						<span>名称：</span> <input type="text" name="name" value="$!name" />
+					</div>
+					<div class="condition">
+						<span>买家姓名：</span> <input type="text" name="buyerName"
+							value="$!buyerName" />
+					</div>
+					<div class="condition">
+						<span>快递单号：</span> <input type="text" name="expressNum"
+							value="$!expressNum" />
+					</div>
+					<div class="condition">
+						<span>状态：</span> 
+						<select name="stauts">
+						  <option value="0" #if($!bean.status || 0 == $!bean.stauts)selected="selected"#end>所有</option>
+						  <td>#if(1 == $!bean.stauts)selected="selected"#end>待定</option>
+						  <td>#if(2 == $!bean.stauts)selected="selected"#end>新单</option>
+						  <option value="3" #if(3 == $!bean.stauts)selected="selected"#end>已发货</option>
+						  <option value="4" #if(4 == $!bean.stauts)selected="selected"#end>已签收 </option>
+						  <option value="5" #if(5 == $!bean.stauts)selected="selected"#end>拒签</option>
+						  <option value="6" #if(6 == $!bean.stauts)selected="selected"#end>已确认收款</option>
+						  <option value="7" #if(7 == $!bean.stauts)selected="selected"#end>拒签,返货中</option>
+						  <option value="8" #if(8 == $!bean.stauts)selected="selected"#end>拒签货已退回</option>
+						  <option value="9" #if(9 == $!bean.stauts)selected="selected"#end>已退款</option>
+						</select>
+					</div>
+					<div class="clear"></div>
+					<div class="operate">
+						<div id="query" class="o_btn">查询</div>
+						<a href="orders.do?type=add" class="o_btn" target="_blank">新增</a>
+					</div>
+					<div id="cache"></div>
+				</form>
+			</div>
+			<div class="clear"></div>
+			<div class="result">
+				<table class="data_table">
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>名称</th>
+							<th>简述</th>
+							<th>开始</th>
+							<th>结束</th>
+							<th>总价</th>
+							<th>总量</th>
+							<th>买家</th>
+							<th>地址</th>
+							<th>电话</th>
+							<th>留言</th>
+							<th>支付</th>
+							<th>快递</th>
+							<th>运费</th>
+							<th>运单号</th>
+							<th>状态</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach($bean in $page.list)
+						<tr id="tr-$bean.id">
+							<td>$!bean.ordersNum</td>
+							<td>$!bean.name</td>
+							<td>$!bean.desc</td>
+							<td>$!bean.startDate</td>
+							<td>$!bean.endDate</td>
+							<td>$!bean.totalPrice</td>
+							<td>$!bean.totalProduct</td>
+							<td>$!bean.buyerName</td>
+							<td>$!bean.buyerAddress</td>
+							<td>$!bean.buyerPhone</td>
+							<td>$!bean.buyerMsg</td>
+							<td>$!bean.payTypeName</td>
+							<td>$!bean.expressName</td>
+							<td>$!bean.expressPrice</td>
+							<td>$!bean.expressNum</td>
+							<td>$!bean.statusName</td>
+							<td>$!bean.remark</td>
+							<td class="d-operate"><a
+								href="orders.do?type=detail&id=$bean.id" target="_blank">详情</a>
+								<a
+								href="orders.do?type=update&id=$bean.id" target="_blank">修改</a>
+								&nbsp; <span flag="$bean.id" class="d_delete">删除</span></td>
+						</tr>
+						#end
+						<tr>
+							<td colspan="18">
+								<form id="p_form" action="orders.do?type=query" method="post">
+									<input type="hidden" name="ordersNum"" value="$!ordersNum" /> 
+									<input type="hidden" name="buyerName" value="$!buyerName" /> 
+									<input type="hidden" name="expressNum" value="$!expressNum" /> 
+									<input type="hidden" name="status" value="$!bean.status" /> 
+									<input id="curPage" type="hidden" name="curPage" value="$!curPage" />
+									<input id="totalPage" type="hidden" name="totalPage" value="$!totalPage" /> 
+									<span id="pre" class="page">上一页</span>
+									&nbsp;$!page.curPage&nbsp;/&nbsp;$!page.totalPage&nbsp; <span
+										id="next" class="page">下一页</span>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

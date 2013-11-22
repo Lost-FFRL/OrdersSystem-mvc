@@ -1,0 +1,25 @@
+@import url(base.css);
+
+.form {
+	height: 400px;
+	margin: 0 auto;
+	text-align: center;
+	width: 500px;
+}
+
+.form table {
+	background: none repeat scroll 0 0 #F2F2F2;
+	height: 120px;
+	margin-top: 200px;
+	padding: 5px;
+	width: 305px;
+}
+
+.login-btn {
+	height: 25px;
+    width: 70px;
+}
+
+.data_table{
+	
+}

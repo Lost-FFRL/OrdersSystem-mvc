@@ -1,0 +1,56 @@
+@import url(base.css);
+
+@import url(nvg.css);
+
+.data_table {
+	width: 800px;
+}
+
+.head,.body {
+	width: 900px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.condition {
+	float: left;
+	margin-left: 60px;
+}
+
+.operate {
+	width: 100%;
+}
+
+.o_btn {
+	cursor: pointer;
+	float: right;
+	height: 30px;
+	line-height: 28px;
+	margin-right: 100px;
+	margin-top: 15px;
+	text-align: center;
+	text-decoration: none;
+	width: 80px;
+	background-color: #00CCFF;
+	color: #000;
+}
+
+.result {
+	margin-top: 10px;
+}
+
+.result table {
+	
+}
+
+.page {
+	color: #0000FF;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.d_delete {
+	color: #0000FF;
+	cursor: pointer;
+	text-decoration: underline;
+}

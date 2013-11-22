@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>订单增改</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/orders_update.css">
+<script type="text/javascript" src="./js/jquery.js"></script>
+</head>
+
+<body>
+	<div class="bg">
+		<div class="form">
+				<table>
+					<tbody>
+						<tr>
+							<td class="e_name">订单编号：</td>
+							<td class="e_value">$!bean.ordersNum
+							</td>
+							<td class="e_name">订单名称：</td>
+							<td class="e_value">$!bean.name
+							</td>
+						</tr>
+ 						<tr>
+							<td class="e_name">开始时间：</td>
+							<td class="e_value">$!bean.startDate
+							<td class="e_name">结束时间：</td>
+							<td class="e_value">$!bean.endDate
+							</td>
+						</tr> 
+						<tr>
+							<td class="e_name">买家：</td>
+							<td class="e_value">$!bean.buyerName
+							<td class="e_name">地址：</td>
+							<td class="e_value">$!bean.buyerAddress
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">联系方式：</td>
+							<td class="e_value">$!bean.buyerPhone</td>
+							<td class="e_name">买家留言：</td>
+							<td class="e_value">$!bean.buyerMsg</td>
+						</tr>
+						<tr>
+							<td class="e_name">支付方式：</td>
+							<td class="e_value">
+							$!bean.payTypeName
+							</td>
+							<td class="e_name">快递：</td>
+							<td class="e_value">$!bean.expressName</td>
+						</tr>
+						<tr>
+							<td class="e_name">运费：</td>
+							<td class="e_value">$!bean.expressPrice</td>
+							<td class="e_name">运单号：</td>
+							<td class="e_value">$!bean.expressNum</input></td>
+						</tr>
+						<tr>
+							<td class="e_name">状态：</td>
+								<td class="e_value">$!bean.statusName
+								</td>
+							</tr>
+						<tr>
+							<td class="e_name">简述：</td>
+							<td class="e_value"><textarea id="desc" name="desc" rows="4"
+									cols="30" value="$!bean.desc" disabled="disabled">$!bean.desc</textarea>
+							</td>
+							<td class="e_name">备注</td>
+							<td class="e_value"><textarea id="remark" name="remark"
+									rows="4" cols="30" value="$!bean.remark" disabled="disabled"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="e_name">总价：</td>
+							<td class="e_value">$!bean.totalPrice</td>
+							<td class="e_name">总量：</td>
+							<td class="e_value">$!bean.totalProduct
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div id="product_info" class="product_info">
+									选择的商品
+								</div>
+								<div class="clear"></div>
+								<div class="p_table">
+									<table id="p-list" class="data_table">
+										<thead>
+											<tr>
+												<th>名称</th>
+												<th>单价</th>
+												<th>数量</th>
+											</tr>
+										</thead>
+										<tbody>
+										#foreach($product in $bean.ordersProduct)
+										<tr id="$!product.proId">
+											<td>$!product.proName</td>
+											<td>$!product.proPrice</td>
+											<td>$!product.proCount</td>
+										</tr>
+										#end
+										</tbody>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</body>
+</html>
